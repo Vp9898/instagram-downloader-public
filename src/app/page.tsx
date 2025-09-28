@@ -1,12 +1,14 @@
+// src/app/page.tsx
 "use client";
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Download, Link2, Instagram, Video, Music, User } from 'lucide-react';
+import { Download, Link2, Instagram, Video, Music, User, Globe } from 'lucide-react';
 
 export default function InstagramDownloader() {
   const [url, setUrl] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [mediaData, setMediaData] = useState(null);
+  const [currentLang, setCurrentLang] = useState('en');
 
   const handleExtract = async () => {
     setIsLoading(true);
@@ -24,18 +26,30 @@ export default function InstagramDownloader() {
     setIsLoading(false);
   };
 
+  const toggleLanguage = () => {
+    setCurrentLang(currentLang === 'en' ? 'ar' : 'en');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-pink-800 to-orange-600 relative overflow-hidden">
-      {/* خلفية متدرجة بسيطة */}
+      {/* Language Toggle */}
+      <div className="absolute top-4 right-4 z-50">
+        <button
+          onClick={toggleLanguage}
+          className="bg-white/20 backdrop-blur-lg rounded-full p-3 text-white hover:bg-white/30 transition-all duration-300"
+        >
+          <Globe className="w-5 h-5" />
+        </button>
+      </div>
+
+      {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-pink-800/20 to-orange-600/20 opacity-30"></div>
-      
-      {/* تأثيرات ضوئية */}
       <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
       <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
       <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
 
       <div className="relative z-10 container mx-auto px-4 py-16">
-        {/* الهيدر */}
+        {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -49,11 +63,11 @@ export default function InstagramDownloader() {
             </h1>
           </div>
           <p className="text-xl text-white/80 max-w-2xl mx-auto">
-            حمل مقاطع الفيديو، الريلز، القصص، وصور الملف الشخصية بجودة عالية
+            Download videos, reels, stories, and profile pictures in high quality
           </p>
         </motion.div>
 
-        {/* نموذج الإدخال */}
+        {/* Input Form */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -68,7 +82,7 @@ export default function InstagramDownloader() {
                   type="url"
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
-                  placeholder="الصق رابط Instagram هنا..."
+                  placeholder="Paste Instagram link here..."
                   className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent backdrop-blur-sm"
                 />
               </div>
@@ -82,12 +96,12 @@ export default function InstagramDownloader() {
                 {isLoading ? (
                   <>
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    جاري التحميل...
+                    Loading...
                   </>
                 ) : (
                   <>
                     <Download className="w-5 h-5" />
-                    استخراج
+                    Extract
                   </>
                 )}
               </motion.button>
@@ -95,7 +109,7 @@ export default function InstagramDownloader() {
           </div>
         </motion.div>
 
-        {/* مميزات التطبيق */}
+        {/* Features */}
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -103,9 +117,9 @@ export default function InstagramDownloader() {
           className="grid md:grid-cols-3 gap-8 mb-16"
         >
           {[
-            { icon: Video, title: 'فيديوهات عالية الجودة', desc: 'حمّل مقاطع الفيديو والريلز بدقة تصل إلى 4K' },
-            { icon: Music, title: 'صوت نقي', desc: 'استخرج الصوت بصيغة MP3 بجودة ممتازة' },
-            { icon: User, title: 'صور ملف شخصي', desc: 'احصل على صور الملف الشخصي بدقة عالية' }
+            { icon: Video, title: 'High Quality Videos', desc: 'Download videos and reels in up to 4K resolution' },
+            { icon: Music, title: 'Crystal Clear Audio', desc: 'Extract audio in MP3 format with excellent quality' },
+            { icon: User, title: 'Profile Pictures', desc: 'Get high-resolution profile pictures' }
           ].map((feature, index) => (
             <motion.div
               key={index}
