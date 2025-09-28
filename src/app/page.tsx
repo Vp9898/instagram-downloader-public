@@ -1,4 +1,3 @@
-// src/app/page.tsx
 "use client";
 import { useState } from 'react';
 import { motion } from 'framer-motion';
@@ -7,6 +6,13 @@ import { Download, Link2, Instagram, Play, Image, User, Globe, CheckCircle } fro
 export default function InstagramDownloader() {
   const [url, setUrl] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleExtract = async () => {
+    console.log('Extracting:', url);
+    setIsLoading(true);
+    // كود الـ API سيوضع هنا لاحقاً
+    setTimeout(() => setIsLoading(false), 2000);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#fafafa] via-[#f0f2f5] to-[#e6e9ef]">
@@ -32,7 +38,7 @@ export default function InstagramDownloader() {
           transition={{ duration: 0.6 }}
         >
           <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium mb-4">
-            <CheckCircle className="w-4 h-4" />
+            <CheckCircle className="w-4 h-4 text-green-700" />
             100% Free • No Login Required
           </div>
 
