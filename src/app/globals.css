@@ -1,8 +1,4 @@
-/* src/app/globals.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+/* Animations */
 @keyframes blob {
   0% { transform: translate(0px, 0px) scale(1); }
   33% { transform: translate(30px, -50px) scale(1.1); }
@@ -16,3 +12,12 @@
 
 .animation-delay-2000 { animation-delay: 2s; }
 .animation-delay-4000 { animation-delay: 4s; }
+
+/* Hover Effects */
+.hover-lift {
+  transition: all 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
