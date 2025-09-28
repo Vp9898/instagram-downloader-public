@@ -1,12 +1,12 @@
 "use client";
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Download, Link2, Eye, Sparkles, Instagram, Video, Music, User } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Download, Link2, Instagram, Video, Music, User } from 'lucide-react';
 
 export default function InstagramDownloader() {
   const [url, setUrl] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [mediaData, setMediaData] = useState<any>(null);
+  const [mediaData, setMediaData] = useState(null);
 
   const handleExtract = async () => {
     setIsLoading(true);
